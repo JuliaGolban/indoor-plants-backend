@@ -7,6 +7,7 @@ const routerServices = require('./services');
 const routerMessage = require('./message');
 const routerAdmin = require('./admin');
 const routerDevelopers = require('./developers');
+const routerCatalog = require('./catalog');
 
 module.exports = {
   routerAuth,
@@ -18,4 +19,5 @@ module.exports = {
   routerMessage,
   routerAdmin,
   routerDevelopers,
+  routerCatalog,
 };

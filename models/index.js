@@ -8,6 +8,7 @@ const { Owner, ownerValidationSchema } = require('./owner');
 const Messages = require('./message');
 const { Service, serviceValidationSchema } = require('./service');
 const Developers = require('./developers');
+const Catalog = require('./catalog');
 
 module.exports = {
   Users,
@@ -20,4 +21,5 @@ module.exports = {
   Service,
   serviceValidationSchema,
   Developers,
+  Catalog,
 };

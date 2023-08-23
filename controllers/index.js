@@ -5,6 +5,7 @@ const event = require('./event');
 const owner = require('./owner');
 const message = require('./message');
 const developers = require('./developers');
+const catalog = require('./catalog');
 
 module.exports = {
   auth,
@@ -14,4 +15,5 @@ module.exports = {
   message,
   services,
   developers,
+  catalog,
 };

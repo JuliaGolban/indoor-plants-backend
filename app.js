@@ -3,14 +3,15 @@ const logger = require('morgan');
 const cors = require('cors');
 const { errorHandler } = require('./helpers');
 const {
-  routerAuth,
-  routerUser,
-  routerEvent,
-  routerUpdateEvent,
-  routerOwner,
-  routerMessage,
-  routerAdmin,
+  // routerAuth,
+  // routerUser,
+  // routerEvent,
+  // routerUpdateEvent,
+  // routerOwner,
+  // routerMessage,
+  // routerAdmin,
   routerDevelopers,
+  routerCatalog,
 } = require('./routes/api');
 
 const app = express();
@@ -27,17 +28,18 @@ app.use((req, res, next) => {
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use('/api/auth', routerAuth);
-app.use('/api/get_event', routerEvent);
-app.use('/api/batch_event', routerUpdateEvent);
-app.use('/api/owner', routerOwner);
-app.use('/api/user', routerUser);
-app.use('/api/services', routerServices);
-app.use('/api/message', routerMessage);
-app.use('/api/admin', routerAdmin);
+// app.use('/api/auth', routerAuth);
+// app.use('/api/get_event', routerEvent);
+// app.use('/api/batch_event', routerUpdateEvent);
+// app.use('/api/owner', routerOwner);
+// app.use('/api/user', routerUser);
+// app.use('/api/services', routerServices);
+// app.use('/api/message', routerMessage);
+// app.use('/api/admin', routerAdmin);
 app.use('/api/developers', routerDevelopers);
 
-// app.use('/api/location', ctrl.location);
+app.use('/api/catalog', routerCatalog);
+
 
 app.use((req, res) => {
   console.log('!!!!! APP (req, res) !!!!!!');
