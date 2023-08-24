@@ -9,7 +9,11 @@ const catalogSchema = new Schema({
     type: String,
     required: true,
   },
-  Botanical: {
+  Description: {
+    type: String,
+    required: true,
+  },
+  TypeOfPlants: {
     type: String,
     required: true,
   },
@@ -21,11 +25,43 @@ const catalogSchema = new Schema({
     type: String,
     required: true,
   },
-  OldPrice: {
+  PetFriendly: {
     type: String,
     required: true,
   },
-  NewPrice: {
+  Meintenance: {
+    type: String,
+    required: true,
+  },
+  PotSize: {
+    type: String,
+    required: true,
+  },
+  WaterShadule: {
+    type: String,
+    required: true,
+  },
+  OldPriceS: {
+    type: String,
+    required: true,
+  },
+  NewPriceS: {
+    type: String,
+    required: true,
+  },
+  OldPriceL: {
+    type: String,
+    required: true,
+  },
+  NewPriceL: {
+    type: String,
+    required: true,
+  },
+  OldPriceXL: {
+    type: String,
+    required: true,
+  },
+  NewPriceXL: {
     type: String,
     required: true,
   },
