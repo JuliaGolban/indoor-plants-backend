@@ -1,100 +1,78 @@
 const { Schema, model } = require("mongoose");
 
 const catalogSchema = new Schema({
-  ID: {
+  id: {
     type: String,
     required: true,
   },
-  Common: {
+  name: {
     type: String,
     required: true,
   },
-  Description: {
+  description: {
     type: String,
     required: true,
   },
-  TypeOfPlants: {
+  typeOfPlants: {
     type: String,
     required: true,
   },
-  Zone: {
+  zone: {
     type: String,
     required: true,
   },
-  Light: {
+  light: {
     type: String,
     required: true,
   },
-  PetFriendly: {
+  petFriendly: {
     type: String,
     required: true,
   },
-  Meintenance: {
+  maintenance: {
     type: String,
     required: true,
   },
-  PotSize: {
+  potSize: {
     type: String,
     required: true,
   },
-  WaterShadule: {
+  waterSchedule: {
     type: String,
     required: true,
   },
-  OldPriceS: {
+  totalQuantity: {
     type: String,
     required: true,
   },
-  NewPriceS: {
+  price: {
     type: String,
     required: true,
   },
-  OldPriceL: {
+  discount: {
     type: String,
     required: true,
   },
-  NewPriceL: {
+  currency: {
     type: String,
     required: true,
   },
-  OldPriceXL: {
-    type: String,
+  options: {
+    type: [
+      {
+        title: String,
+        price: String,
+        discount: String,
+        total: String,
+      },
+    ],
+    default: [],
     required: true,
   },
-  NewPriceXL: {
-    type: String,
+  images: {
+    type: Array,
+    default: [],
     required: true,
-  },
-  Currency: {
-    type: String,
-    required: true,
-  },
-  SizeS: {
-    type: String,
-  },
-  SizeL: {
-    type: String,
-  },
-  SizeM: {
-    type: String,
-  },
-  SizeXL: {
-    type: String,
-  },
-  Img1: {
-    type: String,
-  },
-  Img2: {
-    type: String,
-  },
-  Img3: {
-    type: String,
-  },
-  Img4: {
-    type: String,
-  },
-  Img5: {
-    type: String,
   },
 });
 
