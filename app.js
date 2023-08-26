@@ -38,7 +38,7 @@ app.use("/uploads", express.static(`${__dirname}/images`));
 // app.use('/api/user', routerUser);
 // app.use('/api/services', routerServices);
 // app.use('/api/message', routerMessage);
-// app.use('/api/admin', routerAdmin);
+
 app.use("/api/developers", routerDevelopers);
 
 app.use("/api/catalog", routerCatalog);
