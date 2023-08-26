@@ -1,8 +1,8 @@
 const { Schema, model } = require("mongoose");
 
 const catalogSchema = new Schema({
-  id: {
-    type: String,
+  article: {
+    type: Number,
     required: true,
   },
   name: {
@@ -18,7 +18,7 @@ const catalogSchema = new Schema({
     required: true,
   },
   zone: {
-    type: String,
+    type: Array,
     required: true,
   },
   light: {
@@ -42,15 +42,19 @@ const catalogSchema = new Schema({
     required: true,
   },
   totalQuantity: {
-    type: String,
+    type: Number,
     required: true,
   },
-  price: {
-    type: String,
+  oldPrice: {
+    type: Number,
+    required: true,
+  },
+  currentPrice: {
+    type: Number,
     required: true,
   },
   discount: {
-    type: String,
+    type: Number,
     required: true,
   },
   currency: {
@@ -61,9 +65,10 @@ const catalogSchema = new Schema({
     type: [
       {
         title: String,
-        price: String,
-        discount: String,
-        total: String,
+        oldPrice: Number,
+        currentPrice: Number,
+        discount: Number,
+        total: Number,
       },
     ],
     default: [],

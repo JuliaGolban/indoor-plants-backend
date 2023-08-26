@@ -4,7 +4,7 @@
   "description": "backend for online store indoor-plants",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+     "start": "node server.js",
     "start:dev": "nodemon server"
   },
   "repository": {
