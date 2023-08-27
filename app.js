@@ -3,7 +3,7 @@ const logger = require("morgan");
 const cors = require("cors");
 const { errorHandler } = require("./helpers");
 const {
-  // routerAuth,
+  routerAuth,
   // routerUser,
   // routerEvent,
   // routerUpdateEvent,
@@ -31,7 +31,7 @@ app.use(express.json());
 app.use("/uploads", express.static(`${__dirname}/images`));
 
 
-// app.use('/api/auth', routerAuth);
+app.use('/api/auth', routerAuth);
 // app.use('/api/get_event', routerEvent);
 // app.use('/api/batch_event', routerUpdateEvent);
 // app.use('/api/owner', routerOwner);

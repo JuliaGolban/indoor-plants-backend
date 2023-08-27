@@ -2,8 +2,6 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { Users } = require("../../models");
 const {
-  // requestError,
-  // userMainField,
   userFullField,
   dataFilter,
   ValidationError,
@@ -20,12 +18,6 @@ const signin = async (req, res, next) => {
   }
   const user = await Users.findOne({ email });
   if (!user) throw new UnauthorizedError("Email or password is wrong");
-
-  // if (!user.isActivate) {
-  //   const err = createError(403, `Email ${email} not verified`);
-  //   err.data = { user: { email: user.email, verify: user.verify } };
-  //   return next(err);
-  // }
 
   const isCorrectPassword = bcrypt.compareSync(password, user.password);
   if (!isCorrectPassword)

@@ -36,7 +36,6 @@ const signup = async (req, res, next) => {
       `Email: ${userDataCreate.email} already register`
     );
   }
-  // userDataCreate.authToken = authToken;
 
   const user = await Users.create(userDataCreate);
   const payload = { id: user._id };
