@@ -1,12 +1,13 @@
-const { ValidationError } = require('../helpers');
+const { ValidationError } = require("../helpers");
 
-const validation = schema => {
+const validation = (schema) => {
   return (req, res, next) => {
-    console.log('validation req.query: ', req.query);
-    console.log('validation req.query req.body: ', req.body);
+    console.log("validation req.query: ", req.query);
+    console.log("validation req.body: ", req.body);
+    console.log("validation req.params: ", req.params);
     const dataValidate =
       Object.keys(req.query).length > 0 ? req.query : req.body;
-    console.log('dataValidate: ', dataValidate);
+    console.log("dataValidate: ", dataValidate);
     const { error } = schema.validate(dataValidate);
     if (error) {
       throw new ValidationError(error.message);
