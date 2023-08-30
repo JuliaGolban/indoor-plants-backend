@@ -5,6 +5,7 @@ const {
   userFieldReceivedFromFront,
   dataFilter,
 } = require("../../helpers");
+let path = require("path");
 
 const update = async (req, res, next) => {
   const { id } = req.params;
@@ -12,12 +13,13 @@ const update = async (req, res, next) => {
   if (!newData) {
     throw new ValidationError("Bad request, invalid data");
   }
-  req.file?.path && (newData.avatar = req.file.path);
+  console.log("req.file?.path BLAAAAAAAAAAAA", path.basename(req.file?.path));
+  req.file?.path && (newData.avatar = path.basename(req.file?.path));
   const resUpdate = await Users.findOneAndUpdate({ _id: id }, newData, {
     new: true,
   });
   const newResponse = dataFilter(resUpdate, userMainField);
-  req.file?.path && (newResponse.avatar = req.file.path);
+  req.file?.path && (newResponse.avatar = path.basename(req.file?.path));
   console.log("newResponse", newResponse);
   res.status(201).json(newResponse);
 };

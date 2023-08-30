@@ -30,7 +30,7 @@ router.delete(
 router.patch(
   '/users/:id',
   ctrlWrapper(authMiddleware),
-  uploadCloud.single('avatar'),
+/*   uploadCloud.single('avatar'), */
   validation(userUpdateValidationSchema),
   ctrlWrapper(user.updateUser)
 );
@@ -38,7 +38,7 @@ router.patch(
 router.post(
   '/users/create',
   ctrlWrapper(authMiddleware),
-  uploadCloud.single('avatar'),
+/*   uploadCloud.single('avatar'), */
   ctrlWrapper(user.createUser)
 );
 
@@ -90,14 +90,14 @@ router.patch(
   '/owners/:id',
   ctrlWrapper(authMiddleware),
   validation(ownerValidationSchema),
-  uploadCloud.single('avatar'),
+/*   uploadCloud.single('avatar'), */
   ctrlWrapper(owner.updateOwner)
 );
 
 router.post(
   '/owners/create',
   ctrlWrapper(authMiddleware),
-  uploadCloud.single('avatar'),
+/*   uploadCloud.single('avatar'), */
   ctrlWrapper(owner.createOwner)
 );
 

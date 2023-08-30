@@ -15,7 +15,7 @@ router.get("/events/:id", ctrlWrapper(authMiddleware), ctrlWrapper(user.getUserE
 router.patch(
   "/:id",
   ctrlWrapper(authMiddleware),
-  uploadCloud.single("avatar"),
+/*   uploadCloud.single("avatar"), */
   validation(userUpdateValidationSchema),
   ctrlWrapper(user.updateUser)
 );
