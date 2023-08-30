@@ -29,7 +29,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use("/uploads", express.static(`${__dirname}/images`));
-
+app.use("/uploads", express.static(`${__dirname}/images/avatars`));
 
 app.use('/api/auth', routerAuth);
 // app.use('/api/get_event', routerEvent);

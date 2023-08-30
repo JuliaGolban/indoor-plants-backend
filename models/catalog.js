@@ -34,10 +34,22 @@ const catalogSchema = new Schema({
     required: true,
   },
   potSize: {
-    type: String,
+    type: Array,
     required: true,
   },
   waterSchedule: {
+    type: String,
+    required: true,
+  },
+  waterDescribe: {
+    type: String,
+    required: true,
+  },
+  rare: {
+    type: String,
+    required: true,
+  },
+  hardToKill: {
     type: String,
     required: true,
   },
