@@ -4,7 +4,7 @@
   "description": "backend for online store indoor-plants",
   "main": "server.js",
   "scripts": {
-     "start": "node server.js",
+    "start": "node server.js",
     "start:dev": "nodemon server"
   },
   "repository": {
@@ -37,7 +37,7 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "multer-storage-cloudinary": "^4.0.0",
-    "nodemailer": "^6.9.3",
+    "nodemailer": "^6.9.4",
     "nodemailer-direct-transport": "^3.3.2",
     "request": "^2.88.2",
     "sharp": "^0.32.0"
