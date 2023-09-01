@@ -22,6 +22,7 @@ router.post(
 );
 
 router.post("/logout", ctrlWrapper(authMiddleware), ctrlWrapper(ctrl.logout));
+router.post("/changepassword", ctrlWrapper(ctrl.changepassword));
 router.post("/", ctrlWrapper(authMiddleware), ctrlWrapper(ctrl.current));
 
 router.patch(

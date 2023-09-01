@@ -6,7 +6,9 @@ const validation = (schema) => {
     console.log("validation req.body: ", req.body);
     console.log("validation req.params: ", req.params);
     const dataValidate =
-      Object.keys(req.query).length > 0 ? req.query : req.body;
+      Object.keys(req.query).length > 0
+        ? req.query
+        : JSON.parse(JSON.stringify(req.body));
     console.log("dataValidate: ", dataValidate);
     const { error } = schema.validate(dataValidate);
     if (error) {
