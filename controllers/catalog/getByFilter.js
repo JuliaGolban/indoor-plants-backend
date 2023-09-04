@@ -40,11 +40,16 @@ const getByFilter = async (req, res, next) => {
     if (petFriendly !== '' && petFriendly !== undefined) {
       filterConstructor.petFriendly = petFriendly;
     }
-    if (minPrice !== '' && minPrice !== undefined) {
-      filterConstructor.minPrice = minPrice;
-    }
-    if (maxPrice !== '' && maxPrice !== undefined) {
-      filterConstructor.maxPrice = maxPrice;
+    if (
+      minPrice !== '' &&
+      minPrice !== undefined &&
+      maxPrice !== '' &&
+      maxPrice !== undefined
+    ) {
+      filterConstructor.currentPrice = {
+        $gte: minPrice,
+        $lte: maxPrice,
+      };
     }
     if (potSize !== '' && potSize !== undefined) {
       filterConstructor.potSize = potSize;
@@ -65,21 +70,6 @@ const getByFilter = async (req, res, next) => {
     console.log('getByFilter ~ filterConstructor:', filterConstructor);
 
     if (isPagination) {
-      if (minPrice) {
-        filterConstructor.currentPrice = { currentPrice: { $gte: minPrice } };
-      }
-      if (maxPrice) {
-        filterConstructor.currentPrice = { currentPrice: { $lte: maxPrice } };
-      }
-      if (minPrice && maxPrice) {
-        filterConstructor.currentPrice = {
-          $and: [
-            { currentPrice: { $gte: minPrice } },
-            { currentPrice: { $lte: maxPrice } },
-          ],
-        };
-      }
-
       if (sort == 'rating') {
         total = await Catalog.find({ ...filterConstructor }).count();
         constructorData.total = total;
