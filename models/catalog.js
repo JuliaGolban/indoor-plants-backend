@@ -98,6 +98,11 @@ const catalogSchema = new Schema({
     default: [],
     required: true,
   },
+  rating: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
 });
 
 const Catalog = model('Catalog', catalogSchema);

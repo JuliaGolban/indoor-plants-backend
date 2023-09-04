@@ -4,8 +4,8 @@ const { Catalog } = require('../../models');
 const getByFilter = async (req, res, next) => {
   try {
     const isPagination = req.query.page;
-    console.log('getByFilter ~ isPagination:', isPagination);
     const {
+      sort,
       typeOfPlants,
       light,
       petFriendly,
@@ -15,8 +15,8 @@ const getByFilter = async (req, res, next) => {
       waterSchedule,
       minPrice,
       maxPrice,
-      page = req.query.page,
-      perPage = req.query.perPage,
+      page,
+      perPage,
     } = req.query;
     console.log('getByFilter ~ req.query:', req.query);
 
@@ -40,11 +40,16 @@ const getByFilter = async (req, res, next) => {
     if (petFriendly !== '' && petFriendly !== undefined) {
       filterConstructor.petFriendly = petFriendly;
     }
-    if (minPrice !== '' && minPrice !== undefined) {
-      filterConstructor.minPrice = minPrice;
-    }
-    if (maxPrice !== '' && maxPrice !== undefined) {
-      filterConstructor.maxPrice = maxPrice;
+    if (
+      minPrice !== '' &&
+      minPrice !== undefined &&
+      maxPrice !== '' &&
+      maxPrice !== undefined
+    ) {
+      filterConstructor.currentPrice = {
+        $gte: minPrice,
+        $lte: maxPrice,
+      };
     }
     if (potSize !== '' && potSize !== undefined) {
       filterConstructor.potSize = potSize;
@@ -62,66 +67,61 @@ const getByFilter = async (req, res, next) => {
       page,
     };
 
+    console.log('getByFilter ~ filterConstructor:', filterConstructor);
+
     if (isPagination) {
+      if (sort == 'rating') {
+        total = await Catalog.find({ ...filterConstructor }).count();
+        constructorData.total = total;
+        catalog = await Catalog.find({ ...filterConstructor })
+          .limit(limit)
+          .skip(skip)
+          .sort({ rating: -1 });
+
+        res.status(200).json({ catalog, total });
+      }
+
+      if (sort == 'minMaxPrice') {
+        total = await Catalog.find({ ...filterConstructor }).count();
+        constructorData.total = total;
+        catalog = await Catalog.find({ ...filterConstructor })
+          .limit(limit)
+          .skip(skip)
+          .sort({ currentPrice: 1 });
+
+        res.status(200).json({ catalog, total });
+      }
+
+      if (sort == 'maxMinPrice') {
+        total = await Catalog.find({ ...filterConstructor }).count();
+        constructorData.total = total;
+        catalog = await Catalog.find({ ...filterConstructor })
+          .limit(limit)
+          .skip(skip)
+          .sort({ currentPrice: -1 });
+
+        res.status(200).json({ catalog, total });
+      }
+
+      if (sort == 'discount') {
+        total = await Catalog.find({ ...filterConstructor }).count();
+        constructorData.total = total;
+        catalog = await Catalog.find({ ...filterConstructor })
+          .limit(limit)
+          .skip(skip)
+          .sort({ discount: -1 });
+
+        res.status(200).json({ catalog, total });
+      }
+
       total = await Catalog.find({ ...filterConstructor }).count();
       constructorData.total = total;
       catalog = await Catalog.find({ ...filterConstructor })
         .limit(limit)
         .skip(skip)
-        .sort({ createdAt: -1 });
+        .sort(sort);
 
       res.status(200).json({ catalog, total });
-
-      if (minPrice) {
-        filterConstructor.currentPrice = { currentPrice: { $gte: minPrice } };
-        total = await Catalog.find({
-          ...filterConstructor,
-        }).count();
-        constructorData.total = total;
-        catalog = await Catalog.find({
-          ...filterConstructor,
-        })
-          .limit(limit)
-          .skip(skip)
-          .sort({ createdAt: -1 });
-
-        res.status(200).json({ catalog, total });
-      }
-      if (maxPrice) {
-        (filterConstructor.currentPrice = { currentPrice: { $lte: maxPrice } }),
-          (total = await Catalog.find({
-            ...filterConstructor,
-          }).count());
-        constructorData.total = total;
-        catalog = await Catalog.find({
-          ...filterConstructor,
-        })
-          .limit(limit)
-          .skip(skip)
-          .sort({ createdAt: -1 });
-
-        res.status(200).json({ catalog, total });
-      }
-      if (minPrice && maxPrice) {
-        filterConstructor.currentPrice = {
-          $and: [
-            { currentPrice: { $gte: minPrice } },
-            { currentPrice: { $lte: maxPrice } },
-          ],
-        };
-        total = await Catalog.find({
-          ...filterConstructor,
-        }).count();
-        constructorData.total = total;
-        catalog = await Catalog.find({
-          ...filterConstructor,
-        })
-          .limit(limit)
-          .skip(skip)
-          .sort({ createdAt: -1 });
-
-        res.status(200).json({ catalog, total });
-      }
     } else {
       const catalog = await Catalog.find();
       res.status(200).json(catalog);
