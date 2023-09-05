@@ -34,12 +34,10 @@ const catalogSchema = new Schema({
     required: true,
   },
   potSize: {
-    type: [
-      {
-        size: Number,
-        unit: String,
-      },
-    ],
+    type: {
+      size: Number,
+      unit: String,
+    },
     default: {},
     required: true,
   },
@@ -105,7 +103,7 @@ const catalogSchema = new Schema({
   category: {
     type: String,
     required: true,
-    default: "Other",
+    default: 'Other',
   },
 });
 
