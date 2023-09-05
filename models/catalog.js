@@ -55,6 +55,10 @@ const catalogSchema = new Schema({
     type: String,
     required: true,
   },
+  size: {
+    type: String,
+    required: true,
+  },
   totalQuantity: {
     type: Number,
     required: true,
@@ -73,10 +77,6 @@ const catalogSchema = new Schema({
   },
   currency: {
     type: String,
-    required: true,
-  },
-  rating: {
-    type: Number,
     required: true,
   },
   options: {
