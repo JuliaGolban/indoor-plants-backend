@@ -34,18 +34,12 @@ const catalogSchema = new Schema({
     required: true,
   },
   potSize: {
-    type: [
-      {
-        size: Number,
-        potSizeItem: String,
-      },
-    ],
-    default: [],
-    // type:       {
-    //     size: Number,
-    //     unit: String,
-    //   },
-    // default: {},
+    type: {
+      size: Number,
+      unit: String,
+    },
+
+    default: {},
     required: true,
   },
   waterSchedule: {
