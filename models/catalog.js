@@ -38,7 +38,6 @@ const catalogSchema = new Schema({
       size: Number,
       unit: String,
     },
-
     default: {},
     required: true,
   },
@@ -51,6 +50,10 @@ const catalogSchema = new Schema({
     required: true,
   },
   rare: {
+    type: String,
+    required: true,
+  },
+  size: {
     type: String,
     required: true,
   },
@@ -96,6 +99,11 @@ const catalogSchema = new Schema({
     type: Number,
     required: true,
     default: 0,
+  },
+  category: {
+    type: String,
+    required: true,
+    default: 'Other',
   },
 });
 
