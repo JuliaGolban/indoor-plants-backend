@@ -18,7 +18,7 @@ const getByFilter = async (req, res, next) => {
       page,
       perPage,
     } = req.query;
-    console.log('getByFilter ~ req.query:', req.query);
+    console.log('req.query:', req.query);
 
     const limit = perPage * 1;
     const skip = perPage * (page - 1);
@@ -52,7 +52,8 @@ const getByFilter = async (req, res, next) => {
       };
     }
     if (potSize !== '' && potSize !== undefined) {
-      filterConstructor.potSize = potSize;
+      const potSizeForFilter = 'potSize.size';
+      filterConstructor[potSizeForFilter] = potSize;
     }
     if (waterSchedule !== '' && waterSchedule !== undefined) {
       filterConstructor.waterSchedule = waterSchedule;
@@ -67,7 +68,7 @@ const getByFilter = async (req, res, next) => {
       page,
     };
 
-    console.log('getByFilter ~ filterConstructor:', filterConstructor);
+    console.log('filterConstructor:', filterConstructor);
 
     if (isPagination) {
       if (sort == 'rating') {
