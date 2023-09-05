@@ -25,7 +25,6 @@ const update = async (req, res, next) => {
     new: true,
   });
   const newResponse = dataFilter(resUpdate, userMainField);
-  console.log("newResponse", newResponse);
   req.file?.path && (newResponse.avatar = path.basename(req.file?.path));
   res.status(201).json(newResponse);
 };

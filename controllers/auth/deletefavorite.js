@@ -1,4 +1,5 @@
 const { Users } = require("../../models");
+const { dataFilter, userMainField } = require("../../helpers");
 
 const deleteFavorite = async (req, res, next) => {
   const { user, params } = req;
@@ -8,7 +9,9 @@ const deleteFavorite = async (req, res, next) => {
     { $pull: { favorites: params.id } }
   );
 
-  res.status(201).json({ message: 'Success deleted from favorites' });
+  const resUpdate = await Users.findOne({ _id: user._id });
+  const newResponse = dataFilter(resUpdate, userMainField);
+  res.status(201).json(newResponse);
 };
 
 module.exports = deleteFavorite;

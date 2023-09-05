@@ -1,3 +1,4 @@
+const { dataFilter, userMainField } = require("../../helpers");
 const { Users } = require("../../models");
 
 const addFavorite = async (req, res, next) => {
@@ -6,8 +7,9 @@ const addFavorite = async (req, res, next) => {
     { _id: user._id },
     { $addToSet: { favorites: params.id } }
   );
-
-  res.status(201).json({ message: 'Success added to favorites' });
+  const resUpdate = await Users.findOne({ _id: user._id });
+  const newResponse = dataFilter(resUpdate, userMainField);
+  res.status(201).json(newResponse);
 };
 
 module.exports = addFavorite;
