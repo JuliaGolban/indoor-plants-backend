@@ -4,6 +4,7 @@ const {
   ctrlWrapper,
   authMiddleware,
   validation,
+  validateId,
 } = require("../../middleWares");
 const { upload } = require("../../middleWares/uploadMiddleware");
 
@@ -23,6 +24,19 @@ router.post(
 
 router.post("/logout", ctrlWrapper(authMiddleware), ctrlWrapper(ctrl.logout));
 router.post("/changepassword", ctrlWrapper(ctrl.changepassword));
+router.post(
+  "/favorites/:id",
+  ctrlWrapper(authMiddleware),
+  validateId,
+  ctrlWrapper(ctrl.addFavorite)
+);
+router.delete(
+  "/favorites/:id",
+  ctrlWrapper(authMiddleware),
+  validateId,
+  ctrlWrapper(ctrl.deleteFavorite)
+);
+
 router.post("/", ctrlWrapper(authMiddleware), ctrlWrapper(ctrl.current));
 
 router.patch(

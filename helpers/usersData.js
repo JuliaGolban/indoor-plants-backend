@@ -7,8 +7,9 @@ const userMainField = [
   "phone",
   "birthday",
   "avatar",
-  "groupAcces",
-  "role",
+  "favorites",
+  // "groupAcces",
+  // "role",
   // 'authToken',
 ];
 
@@ -21,9 +22,10 @@ const userFullField = [
   "phone",
   "birthday",
   "avatar",
-  "groupAcces",
+  // "groupAcces",
   "authToken",
-  "role",
+  "favorites",
+  // "role",
 ];
 
 const userFieldReceivedFromFront = [
@@ -34,7 +36,7 @@ const userFieldReceivedFromFront = [
   "birthday",
   "avatar",
   "password",
-  "id"
+  "id",
 ];
 
 const requiredSignUpFields = [

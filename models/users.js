@@ -12,6 +12,7 @@ const userValidationSchema = Joi.object({
   phone: Joi.string().min(7).max(13).required(),
   birthday: Joi.date(),
   avatar: Joi.string().uri(),
+  favorites: Joi.array(),
 });
 
 const userUpdateValidationSchema = Joi.object({
@@ -22,6 +23,7 @@ const userUpdateValidationSchema = Joi.object({
   phone: Joi.string().min(7).max(32),
   birthday: Joi.date(),
   avatar: Joi.string().uri(),
+  favorites: Joi.array(),
 });
 
 const UsersSchema = new mongoose.Schema(
@@ -54,6 +56,10 @@ const UsersSchema = new mongoose.Schema(
     avatar: {
       type: mongoose.SchemaTypes.Url,
       default: '',
+    },
+    favorites: {
+      type: Array,
+      default: [],
     },
     isActivate: {
       type: Boolean,
