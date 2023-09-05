@@ -102,6 +102,11 @@ const catalogSchema = new Schema({
     required: true,
     default: 0,
   },
+  category: {
+    type: String,
+    required: true,
+    default: "Other",
+  },
 });
 
 const Catalog = model('Catalog', catalogSchema);
