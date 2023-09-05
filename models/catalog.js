@@ -37,7 +37,7 @@ const catalogSchema = new Schema({
     type: [
       {
         size: Number,
-        potSizeItem: String,
+        unit: String,
       },
     ],
     default: {},
