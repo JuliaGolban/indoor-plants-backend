@@ -34,7 +34,14 @@ const catalogSchema = new Schema({
     required: true,
   },
   potSize: {
-    type: Array,
+    type: [
+      {
+        size: Number,
+        potSizeItem: Number,
+        currentPrice: String,
+      },
+    ],
+    default: [],
     required: true,
   },
   waterSchedule: {
@@ -46,6 +53,10 @@ const catalogSchema = new Schema({
     required: true,
   },
   rare: {
+    type: String,
+    required: true,
+  },
+  size: {
     type: String,
     required: true,
   },
@@ -71,6 +82,10 @@ const catalogSchema = new Schema({
   },
   currency: {
     type: String,
+    required: true,
+  },
+  rating: {
+    type: Number,
     required: true,
   },
   options: {
