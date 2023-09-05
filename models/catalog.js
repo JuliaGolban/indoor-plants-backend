@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require('mongoose');
 
 const catalogSchema = new Schema({
   article: {
@@ -37,30 +37,21 @@ const catalogSchema = new Schema({
     type: [
       {
         size: Number,
-        potSizeItem: Number,
-        currentPrice: String,
+        potSizeItem: String,
       },
     ],
-    default: [],
+    default: {},
     required: true,
   },
   waterSchedule: {
     type: String,
     required: true,
   },
-  waterDescribe: {
+  hardToKill: {
     type: String,
     required: true,
   },
   rare: {
-    type: String,
-    required: true,
-  },
-  size: {
-    type: String,
-    required: true,
-  },
-  hardToKill: {
     type: String,
     required: true,
   },
@@ -106,8 +97,13 @@ const catalogSchema = new Schema({
     default: [],
     required: true,
   },
+  rating: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
 });
 
-const Catalog = model("Catalog", catalogSchema);
+const Catalog = model('Catalog', catalogSchema);
 
 module.exports = Catalog;
