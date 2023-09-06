@@ -6,6 +6,7 @@ const update = require("./update");
 const changepassword = require("./changepassword");
 const addFavorite = require("./addfavorite");
 const deleteFavorite = require("./deletefavorite");
+const getFavorites = require("./getFavorites");
 
 module.exports = {
   signup,
@@ -16,4 +17,5 @@ module.exports = {
   changepassword,
   addFavorite,
   deleteFavorite,
+  getFavorites
 };

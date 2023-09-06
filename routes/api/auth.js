@@ -36,6 +36,12 @@ router.delete(
   validateId,
   ctrlWrapper(ctrl.deleteFavorite)
 );
+router.post(
+  "/catalog/:id",
+  ctrlWrapper(authMiddleware),
+  validateId,
+  ctrlWrapper(ctrl.getFavorites)
+);
 
 router.post("/", ctrlWrapper(authMiddleware), ctrlWrapper(ctrl.current));
 
