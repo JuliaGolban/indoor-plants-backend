@@ -8,6 +8,8 @@ const routerMessage = require('./message');
 const routerAdmin = require('./admin');
 const routerDevelopers = require('./developers');
 const routerCatalog = require('./catalog');
+const routerSities = require('./cities');
+const routerDepartments = require('./departments');
 
 module.exports = {
   routerAuth,
@@ -20,4 +22,6 @@ module.exports = {
   routerAdmin,
   routerDevelopers,
   routerCatalog,
+  routerSities,
+  routerDepartments
 };

@@ -6,6 +6,8 @@ const owner = require("./owner");
 const message = require("./message");
 const developers = require("./developers");
 const catalog = require("./catalog");
+const cities = require("./cities");
+const departments = require("./departments");
 
 module.exports = {
   auth,
@@ -16,4 +18,6 @@ module.exports = {
   services,
   developers,
   catalog,
+  cities,
+  departments,
 };

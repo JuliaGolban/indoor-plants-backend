@@ -12,6 +12,7 @@ const {
   // routerAdmin,
   routerDevelopers,
   routerCatalog,
+  routerSities,
 } = require("./routes/api");
 
 const app = express();
@@ -40,7 +41,8 @@ app.use('/api/auth', routerAuth);
 // app.use('/api/message', routerMessage);
 
 app.use("/api/developers", routerDevelopers);
-
+app.use('/api/cities', routerSities);
+app.use('/api/departments', routerDepartments);
 app.use("/api/catalog", routerCatalog);
 
 app.use((req, res) => {
