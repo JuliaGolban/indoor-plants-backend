@@ -33,7 +33,7 @@ const postDepartmentsByFilter = async (req, res, next) => {
           })
           .then(({ data }) => {
             DepartmentsNP.insertMany(data.data);
-            res.status(200).json(data);
+            res.status(200).json(data.data);
           })
           .catch((error) => {
             console.error(error);
