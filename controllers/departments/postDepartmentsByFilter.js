@@ -32,7 +32,6 @@ const postDepartmentsByFilter = async (req, res, next) => {
             headers: customHeaders,
           })
           .then(({ data }) => {
-            console.log("data:", data);
             DepartmentsNP.insertMany(data.data);
             res.status(200).json(data);
           })
