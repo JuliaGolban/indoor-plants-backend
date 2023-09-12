@@ -6,6 +6,7 @@ const getByFilter = async (req, res, next) => {
     const isPagination = req.query.page;
     const {
       sort,
+      search,
       typeOfPlants,
       light,
       petFriendly,
@@ -18,7 +19,7 @@ const getByFilter = async (req, res, next) => {
       page,
       perPage,
     } = req.query;
-    console.log('req.query:', req.query);
+    console.log('REQ.QUERY:', req.query);
 
     const limit = perPage * 1;
     const skip = perPage * (page - 1);
@@ -68,7 +69,28 @@ const getByFilter = async (req, res, next) => {
       page,
     };
 
-    console.log('filterConstructor:', filterConstructor);
+    console.log('FILTER:', filterConstructor);
+
+    if (search) {
+      total = await Catalog.find({
+        name: { $regex: search },
+      }).count();
+      constructorData.total = total;
+
+      const catalog = await Catalog.find({
+        name: { $regex: search },
+      });
+
+      const category = await Catalog.find({
+        typeOfPlants: { $regex: search },
+      });
+
+      console.log('SEARCH ~products:', catalog);
+      console.log('SEARCH ~total products:', total);
+      console.log('SEARCH ~category:', category);
+
+      res.status(200).json({ catalog, total, category });
+    }
 
     if (isPagination) {
       if (sort == 'rating') {
