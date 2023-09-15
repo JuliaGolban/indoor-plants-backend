@@ -19,8 +19,8 @@ const getFavorites = async (req, res, next) => {
     let total = data.length;
     let catalog = [];
     for (
-      i = page * perPage - perPage + 1;
-      i < page * perPage + 1 && i < data.length;
+      i = page * perPage - perPage;
+      i < page * perPage && i < data.length;
       i++
     ) {
       catalog.push(data[i]);
