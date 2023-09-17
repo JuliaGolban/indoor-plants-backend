@@ -13,50 +13,6 @@ const catalogSchema = new Schema({
     type: String,
     required: true,
   },
-  typeOfPlants: {
-    type: String,
-    required: true,
-  },
-  zone: {
-    type: Array,
-    required: true,
-  },
-  light: {
-    type: String,
-    required: true,
-  },
-  petFriendly: {
-    type: String,
-    required: true,
-  },
-  maintenance: {
-    type: String,
-    required: true,
-  },
-  potSize: {
-    type: {
-      size: Number,
-      unit: String,
-    },
-    default: {},
-    required: true,
-  },
-  waterSchedule: {
-    type: String,
-    required: true,
-  },
-  hardToKill: {
-    type: String,
-    required: true,
-  },
-  rare: {
-    type: String,
-    required: true,
-  },
-  size: {
-    type: String,
-    required: true,
-  },
   totalQuantity: {
     type: Number,
     required: true,
@@ -93,7 +49,7 @@ const catalogSchema = new Schema({
   images: {
     type: Array,
     default: [],
-    required: true,
+    // required: true,
   },
   rating: {
     type: Number,
@@ -104,6 +60,50 @@ const catalogSchema = new Schema({
     type: String,
     required: true,
     default: 'Other',
+  },
+  typeOfPlants: {
+    type: String,
+    // required: true,
+  },
+  zone: {
+    type: Array,
+    // required: true,
+  },
+  light: {
+    type: String,
+    // required: true,
+  },
+  petFriendly: {
+    type: String,
+    // required: true,
+  },
+  maintenance: {
+    type: String,
+    // required: true,
+  },
+  potSize: {
+    type: {
+      size: Number,
+      unit: String,
+    },
+    default: {},
+    // required: true,
+  },
+  waterSchedule: {
+    type: String,
+    // required: true,
+  },
+  hardToKill: {
+    type: String,
+    // required: true,
+  },
+  rare: {
+    type: String,
+    // required: true,
+  },
+  size: {
+    type: String,
+    // required: true,
   },
 });
 
