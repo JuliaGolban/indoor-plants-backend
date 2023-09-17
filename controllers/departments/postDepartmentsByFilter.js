@@ -18,12 +18,19 @@ const postDepartmentsByFilter = async (req, res, next) => {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET,POST,PUT,PATCH,DELETE,OPTIONS",
   };
+  const dateNow = Date.now();
 
   if (filter) {
     try {
       const departments = await DepartmentsNP.find({
         CityRef: { $regex: `${filter}` },
       });
+      if (departments.length > 0) {
+        if ((dateNow - departments[0].CreateAt) / (1000 * 60 * 60 * 24) > 7) {
+          DepartmentsNP.deleteMany({ CityRef: filter });
+        }
+      }
+
       if (departments.length > 0) {
         res.status(200).json(departments);
       } else {
@@ -32,7 +39,10 @@ const postDepartmentsByFilter = async (req, res, next) => {
             headers: customHeaders,
           })
           .then(({ data }) => {
-            DepartmentsNP.insertMany(data.data);
+            data.data.map((key) => {
+              key.CreateAt = Date.now();
+              DepartmentsNP.insertMany(key);
+            });
             res.status(200).json(data.data);
           })
           .catch((error) => {

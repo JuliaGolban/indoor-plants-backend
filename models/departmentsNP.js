@@ -236,6 +236,9 @@ const departmentsNPSchema = new Schema({
   BeaconCode: {
     type: String,
   },
+  CreateAt: {
+    type: String,
+  },
 });
 
 const DepartmentsNP = model("departmentsNP", departmentsNPSchema);
