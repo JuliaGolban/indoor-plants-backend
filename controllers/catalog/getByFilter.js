@@ -21,11 +21,25 @@ const getByFilter = async (req, res, next) => {
     } = req.query;
     console.log('REQ.QUERY:', req.query);
 
+    const category = req.params.category;
+    console.log('REQ.PARAMS:', req.params);
+
     const limit = perPage * 1;
     const skip = perPage * (page - 1);
 
+    let total = await Catalog.find({ category }).count();
+    let catalog = [];
+    const constructorData = {
+      pagination: isPagination,
+      total,
+      perPage,
+      page,
+    };
     let filterConstructor = {};
 
+    // if (category !== '' && category !== undefined) {
+    //   filterConstructor.category = category;
+    // }
     if (typeOfPlants !== '' && typeOfPlants !== undefined) {
       filterConstructor.typeOfPlants = typeOfPlants;
     }
@@ -59,16 +73,6 @@ const getByFilter = async (req, res, next) => {
     if (waterSchedule !== '' && waterSchedule !== undefined) {
       filterConstructor.waterSchedule = waterSchedule;
     }
-
-    let total = await Catalog.find().count();
-    let catalog = [];
-    const constructorData = {
-      pagination: isPagination,
-      total,
-      perPage,
-      page,
-    };
-
     console.log('FILTER:', filterConstructor);
 
     if (search) {
@@ -81,15 +85,26 @@ const getByFilter = async (req, res, next) => {
         name: { $regex: search },
       });
 
-      const category = await Catalog.find({
+      const group = await Catalog.find({
         typeOfPlants: { $regex: search },
       });
 
       console.log('SEARCH ~products:', catalog);
       console.log('SEARCH ~total products:', total);
-      console.log('SEARCH ~category:', category);
+      console.log('SEARCH ~group:', group);
 
-      res.status(200).json({ catalog, total, category });
+      res.status(200).json({ catalog, total, group });
+    }
+
+    if (category) {
+      total = await Catalog.find({ category: { $regex: category } }).count();
+      constructorData.total = total;
+      catalog = await Catalog.find({ category: { $regex: category } })
+        .limit(limit)
+        .skip(skip)
+        .sort();
+
+      return res.status(200).json({ catalog, total });
     }
 
     if (isPagination) {
@@ -101,7 +116,7 @@ const getByFilter = async (req, res, next) => {
           .skip(skip)
           .sort({ rating: -1 });
 
-        res.status(200).json({ catalog, total });
+        return res.status(200).json({ catalog, total });
       }
 
       if (sort == 'minMaxPrice') {
@@ -112,7 +127,7 @@ const getByFilter = async (req, res, next) => {
           .skip(skip)
           .sort({ currentPrice: 1 });
 
-        res.status(200).json({ catalog, total });
+        return res.status(200).json({ catalog, total });
       }
 
       if (sort == 'maxMinPrice') {
@@ -123,7 +138,7 @@ const getByFilter = async (req, res, next) => {
           .skip(skip)
           .sort({ currentPrice: -1 });
 
-        res.status(200).json({ catalog, total });
+        return res.status(200).json({ catalog, total });
       }
 
       if (sort == 'discount') {
@@ -134,7 +149,7 @@ const getByFilter = async (req, res, next) => {
           .skip(skip)
           .sort({ discount: -1 });
 
-        res.status(200).json({ catalog, total });
+        return res.status(200).json({ catalog, total });
       }
 
       total = await Catalog.find({ ...filterConstructor }).count();
@@ -144,10 +159,15 @@ const getByFilter = async (req, res, next) => {
         .skip(skip)
         .sort(sort);
 
-      res.status(200).json({ catalog, total });
+      return res.status(200).json({ catalog, total });
     } else {
+      // filterConstructor.category = { $regex: category };
+      // total = await Catalog.find({ ...filterConstructor }).count();
+      // constructorData.total = total;
+      // const catalog = await Catalog.find({ ...filterConstructor });
+      // res.status(200).json({ catalog, total });
       const catalog = await Catalog.find();
-      res.status(200).json(catalog);
+      return res.status(200).json(catalog);
     }
   } catch (error) {
     res.status(400).json({ message: 'Invalid filters characters' });

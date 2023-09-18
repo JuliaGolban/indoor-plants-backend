@@ -7,6 +7,7 @@ const router = express.Router();
 
 // router.get("/", ctrlWrapper(get));
 router.get('/', ctrlWrapper(getByFilter));
-router.get('/:id/', ctrlWrapper(getCatalogById));
+router.get('/:category/', ctrlWrapper(getByFilter));
+router.get('/byid/:id/', ctrlWrapper(getCatalogById));
 
 module.exports = routerCatalog = router;
