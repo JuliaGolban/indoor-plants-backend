@@ -89,25 +89,22 @@ const getByFilter = async (req, res, next) => {
         typeOfPlants: { $regex: search },
       });
 
-      console.log('SEARCH ~products:', catalog);
-      console.log('SEARCH ~total products:', total);
-      console.log('SEARCH ~group:', group);
+      // console.log('SEARCH ~products:', catalog);
+      // console.log('SEARCH ~total products:', total);
+      // console.log('SEARCH ~group:', group);
 
       res.status(200).json({ catalog, total, group });
     }
 
-    if (category) {
-      total = await Catalog.find({ category: { $regex: category } }).count();
-      constructorData.total = total;
-      catalog = await Catalog.find({ category: { $regex: category } })
-        .limit(limit)
-        .skip(skip)
-        .sort();
-
-      return res.status(200).json({ catalog, total });
-    }
-
     if (isPagination) {
+      if (category) {
+        total = await Catalog.find({ category: { $regex: category } }).count();
+        constructorData.total = total;
+        catalog = await Catalog.find({ category: { $regex: category } })
+          .limit(limit)
+          .skip(skip)
+          .sort();
+      }
       if (sort == 'rating') {
         total = await Catalog.find({ ...filterConstructor }).count();
         constructorData.total = total;
@@ -115,8 +112,6 @@ const getByFilter = async (req, res, next) => {
           .limit(limit)
           .skip(skip)
           .sort({ rating: -1 });
-
-        return res.status(200).json({ catalog, total });
       }
 
       if (sort == 'minMaxPrice') {
@@ -126,8 +121,6 @@ const getByFilter = async (req, res, next) => {
           .limit(limit)
           .skip(skip)
           .sort({ currentPrice: 1 });
-
-        return res.status(200).json({ catalog, total });
       }
 
       if (sort == 'maxMinPrice') {
@@ -137,8 +130,6 @@ const getByFilter = async (req, res, next) => {
           .limit(limit)
           .skip(skip)
           .sort({ currentPrice: -1 });
-
-        return res.status(200).json({ catalog, total });
       }
 
       if (sort == 'discount') {
@@ -148,8 +139,6 @@ const getByFilter = async (req, res, next) => {
           .limit(limit)
           .skip(skip)
           .sort({ discount: -1 });
-
-        return res.status(200).json({ catalog, total });
       }
 
       total = await Catalog.find({ ...filterConstructor }).count();
@@ -161,13 +150,13 @@ const getByFilter = async (req, res, next) => {
 
       return res.status(200).json({ catalog, total });
     } else {
-      // filterConstructor.category = { $regex: category };
-      // total = await Catalog.find({ ...filterConstructor }).count();
-      // constructorData.total = total;
-      // const catalog = await Catalog.find({ ...filterConstructor });
-      // res.status(200).json({ catalog, total });
-      const catalog = await Catalog.find();
-      return res.status(200).json(catalog);
+      filterConstructor.category = { $regex: category };
+      total = await Catalog.find({ ...filterConstructor }).count();
+      constructorData.total = total;
+      const catalog = await Catalog.find({ ...filterConstructor });
+      res.status(200).json({ catalog, total });
+      // const catalog = await Catalog.find();
+      // return res.status(200).json(catalog);
     }
   } catch (error) {
     res.status(400).json({ message: 'Invalid filters characters' });
