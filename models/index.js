@@ -11,6 +11,7 @@ const Developers = require("./developers");
 const Catalog = require("./catalog");
 const DepartmentsNP = require("./departmentsNP");
 const CitiesNP = require("./citiesNP");
+const Care = require("./care");
 
 module.exports = {
   Users,
@@ -26,4 +27,5 @@ module.exports = {
   Catalog,
   DepartmentsNP,
   CitiesNP,
+  Care,
 };

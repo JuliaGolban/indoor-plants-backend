@@ -13,6 +13,7 @@ const {
   routerDevelopers,
   routerCatalog,
   routerSities,
+  routerCare,
 } = require("./routes/api");
 
 const app = express();
@@ -32,7 +33,7 @@ app.use(express.json());
 app.use("/uploads", express.static(`${__dirname}/images`));
 app.use("/uploads", express.static(`${__dirname}/images/avatars`));
 
-app.use('/api/auth', routerAuth);
+app.use("/api/auth", routerAuth);
 // app.use('/api/get_event', routerEvent);
 // app.use('/api/batch_event', routerUpdateEvent);
 // app.use('/api/owner', routerOwner);
@@ -41,9 +42,10 @@ app.use('/api/auth', routerAuth);
 // app.use('/api/message', routerMessage);
 
 app.use("/api/developers", routerDevelopers);
-app.use('/api/cities', routerSities);
-app.use('/api/departments', routerDepartments);
+app.use("/api/cities", routerSities);
+app.use("/api/departments", routerDepartments);
 app.use("/api/catalog", routerCatalog);
+app.use("/api/care", routerCare);
 
 app.use((req, res) => {
   console.log("!!!!! APP (req, res) !!!!!!");
