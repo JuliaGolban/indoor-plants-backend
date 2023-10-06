@@ -14,6 +14,7 @@ const {
   routerCatalog,
   routerSities,
   routerCare,
+  routerOrder,
 } = require("./routes/api");
 
 const app = express();
@@ -46,6 +47,7 @@ app.use("/api/cities", routerSities);
 app.use("/api/departments", routerDepartments);
 app.use("/api/catalog", routerCatalog);
 app.use("/api/care", routerCare);
+app.use("/api/order", routerOrder);
 
 app.use((req, res) => {
   console.log("!!!!! APP (req, res) !!!!!!");

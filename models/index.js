@@ -12,6 +12,7 @@ const Catalog = require("./catalog");
 const DepartmentsNP = require("./departmentsNP");
 const CitiesNP = require("./citiesNP");
 const Care = require("./care");
+const { Orders, orderValidationSchema } = require("./order");
 
 module.exports = {
   Users,
@@ -28,4 +29,6 @@ module.exports = {
   DepartmentsNP,
   CitiesNP,
   Care,
+  Orders,
+  orderValidationSchema,
 };

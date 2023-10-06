@@ -9,6 +9,7 @@ const catalog = require("./catalog");
 const cities = require("./cities");
 const departments = require("./departments");
 const care = require("./care");
+const order = require("./order");
 
 module.exports = {
   auth,
@@ -21,5 +22,6 @@ module.exports = {
   catalog,
   cities,
   departments,
-  care
+  care,
+  order
 };
