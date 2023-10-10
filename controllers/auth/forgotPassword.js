@@ -9,13 +9,10 @@ const {
   dataFilter,
 } = require('../../helpers');
 
-const changePassword = async (req, res, next) => {
+const forgotPassword = async (req, res, next) => {
   try {
     const newData = dataFilter(req.body, userFieldReceivedFromFront);
-    const hashPassword = bcrypt.hashSync(
-      newData.password,
-      bcrypt.genSaltSync(10)
-    );
+    const hashPassword = bcrypt.hashSync(newData.email, bcrypt.genSaltSync(10));
     newData.password = hashPassword;
     const user = await Users.findOneAndUpdate(
       { email: newData.email },
@@ -41,7 +38,7 @@ const changePassword = async (req, res, next) => {
         from,
         to,
         subject: 'Change password',
-        html: `<h1>Hello</h1><p>Hello. Please note that you have changed the access password to the Shop service</p><p>Hope to see you soon. <br> Wish you a nice day.</p><p>Your Indoor Plants service support</p>`,
+        html: `<h1>Hello</h1><p>Hello. Please pay attention to replacing the access password to the Shop service</p><h3>New password is ${user.email}</h3><p>Hope to see you soon. <br> Wish you a nice day.</p><p>Your Indoor Plants service support</p>`,
       },
       (err, data) => {
         if (err) {
@@ -59,4 +56,4 @@ const changePassword = async (req, res, next) => {
   }
 };
 
-module.exports = changePassword;
+module.exports = forgotPassword;

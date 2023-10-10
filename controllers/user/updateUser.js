@@ -45,9 +45,9 @@ const updateUser = async (req, res, next) => {
         },
         (err, data) => {
           if (err) {
-            console.error('Ошибка при отправке:', err);
+            console.error('Error sending:', err);
           } else {
-            console.log('Письмо отправлено');
+            console.log('Letter sent');
           }
         }
       );

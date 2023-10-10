@@ -15,7 +15,7 @@ const userValidationSchema = Joi.object({
   avatar: Joi.string().uri(),
   favorites: Joi.array(),
   delivery: Joi.string(),
-  address: Joi.array(),
+  address: Joi.object(),
 });
 
 const userUpdateValidationSchema = Joi.object({
@@ -29,7 +29,7 @@ const userUpdateValidationSchema = Joi.object({
   avatar: Joi.string().uri(),
   favorites: Joi.array(),
   delivery: Joi.string(),
-  address: Joi.array(),
+  address: Joi.object(),
 });
 
 const UsersSchema = new mongoose.Schema(
@@ -74,8 +74,8 @@ const UsersSchema = new mongoose.Schema(
       type: String,
     },
     address: {
-      type: Array,
-      default: [],
+      type: Object,
+      default: {},
     },
     isActivate: {
       type: Boolean,
