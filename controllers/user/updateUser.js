@@ -1,20 +1,21 @@
-const { ValidationError } = require("../../helpers");
-const bcrypt = require("bcryptjs");
-const nodemailer = require("nodemailer");
+const { ValidationError } = require('../../helpers');
+const bcrypt = require('bcryptjs');
+const nodemailer = require('nodemailer');
 
-const { Users } = require("../../models");
+const { Users } = require('../../models');
 const {
   userMainField,
   userFieldReceivedFromFront,
   dataFilter,
-} = require("../../helpers");
+} = require('../../helpers');
 
 const updateUser = async (req, res, next) => {
   const { id } = req.params;
   try {
     const newData = dataFilter(req.body, userFieldReceivedFromFront);
+    console.log('updateUser ~ newData:', newData);
     req.file?.path && (newData.avatar = req.file.path);
-    if (newData.password !== "" && newData.password !== undefined) {
+    if (newData.password !== '' && newData.password !== undefined) {
       const hashPassword = bcrypt.hashSync(
         newData.password,
         bcrypt.genSaltSync(10)
@@ -23,7 +24,7 @@ const updateUser = async (req, res, next) => {
       newData.password = hashPassword;
 
       const transporter = nodemailer.createTransport({
-        host: "smtp.ukr.net",
+        host: 'smtp.ukr.net',
         port: 465,
         secure: true,
         auth: {
@@ -32,22 +33,21 @@ const updateUser = async (req, res, next) => {
         },
       });
 
-  
-      const from = "Barber Support <vlad_np@ukr.net>";
+      const from = 'Florist Support <vlad_np@ukr.net>';
       const to = user.email;
 
       transporter.sendMail(
         {
           from,
           to,
-          subject: "Change password",
-          html: `<h1>Hello</h1><p>Hello. Please pay attention to replacing the access password to the Barber service</p><p>Hope to see you soon. <br> Wish you a nice day.</p><p>Your Barber service support</p>`,
+          subject: 'Change password',
+          html: `<h1>Hello</h1><p>Hello. Please pay attention to replacing the access password to the Florist service</p><p>Hope to see you soon. <br> Wish you a nice day.</p><p>Your Florist service support</p>`,
         },
         (err, data) => {
           if (err) {
-            console.error("Ошибка при отправке:", err);
+            console.error('Ошибка при отправке:', err);
           } else {
-            console.log("Письмо отправлено");
+            console.log('Письмо отправлено');
           }
         }
       );

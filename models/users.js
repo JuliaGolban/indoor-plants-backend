@@ -6,6 +6,7 @@ require('mongoose-type-url');
 
 const userValidationSchema = Joi.object({
   userName: Joi.string().min(3).max(32).required(),
+  surname: Joi.string().min(3).max(32),
   email: Joi.string().email().required(),
   password: Joi.string().min(7).max(32).required(),
   location: Joi.string().required(),
@@ -13,10 +14,13 @@ const userValidationSchema = Joi.object({
   birthday: Joi.date(),
   avatar: Joi.string().uri(),
   favorites: Joi.array(),
+  delivery: Joi.string(),
+  address: Joi.array(),
 });
 
 const userUpdateValidationSchema = Joi.object({
   userName: Joi.string().min(3).max(32),
+  surname: Joi.string().min(3).max(32),
   email: Joi.string().email(),
   password: Joi.string().min(7).max(32),
   location: Joi.string(),
@@ -24,6 +28,8 @@ const userUpdateValidationSchema = Joi.object({
   birthday: Joi.date(),
   avatar: Joi.string().uri(),
   favorites: Joi.array(),
+  delivery: Joi.string(),
+  address: Joi.array(),
 });
 
 const UsersSchema = new mongoose.Schema(
@@ -31,6 +37,9 @@ const UsersSchema = new mongoose.Schema(
     userName: {
       type: String,
       required: [true, 'Set user name'],
+    },
+    surname: {
+      type: String,
     },
     email: {
       type: mongoose.SchemaTypes.Email,
@@ -58,6 +67,13 @@ const UsersSchema = new mongoose.Schema(
       default: '',
     },
     favorites: {
+      type: Array,
+      default: [],
+    },
+    delivery: {
+      type: String,
+    },
+    address: {
       type: Array,
       default: [],
     },
