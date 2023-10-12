@@ -37,9 +37,9 @@ const getByFilter = async (req, res, next) => {
     };
     let filterConstructor = {};
 
-    // if (category !== '' && category !== undefined) {
-    //   filterConstructor.category = category;
-    // }
+    if (category !== '' && category !== undefined) {
+      filterConstructor.category = category;
+    }
     if (typeOfPlants !== '' && typeOfPlants !== undefined) {
       filterConstructor.typeOfPlants = typeOfPlants;
     }
