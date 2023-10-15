@@ -6,6 +6,6 @@ const { createOrder, getById } = order;
 const router = express.Router();
 
 router.get("/:id/", ctrlWrapper(getById));
-router.post("/:id/", ctrlWrapper(createOrder));
+router.post("/", ctrlWrapper(createOrder));
 
 module.exports = routerOrder = router;

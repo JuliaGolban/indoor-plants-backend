@@ -17,7 +17,7 @@ const OrdersSchema = new mongoose.Schema(
   {
     user_id: {
       type: String,
-      required: [true, "Set user id"],
+      default: "not avtorization",
     },
     basket: {
       type: Array,
@@ -36,25 +36,32 @@ const OrdersSchema = new mongoose.Schema(
       type: String,
       required: [true, "Set totalPayment"],
     },
-    delivery: {
-      type: Array,
-      required: [true, "Set delivery"],
+    currency: {
+      type: String,
+      required: [true, "Set totalPayment"],
     },
-    metodPayment: {
-      type: Array,
+    deliveryOrder: {
+      type: Object,
+      required: [true, "Set delivery"],
+      default: {},
+    },
+    selectedPaymentOption: {
+      type: String,
       required: [true, "Set metodPayment"],
     },
-    userName: {
+    name: {
       type: String,
       required: [true, "Set userName"],
     },
-    userPhone: {
+    phone: {
       type: String,
       required: [true, "Set userPhone"],
     },
-    userEmail: {
+    email: {
       type: String,
-      required: [true, "Set userEmail"],
+    },
+    comments: {
+      type: String,
     },
   },
   {

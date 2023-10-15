@@ -5,7 +5,8 @@ const getById = async (req, res, next) => {
   const { page = 1, perPage = 5 } = req.query;
   const user_id = req.params.id;
   try {
-    const orders = await Orders.find({ user_id });
+    let orders = []
+    if(user_id !== ''){orders = await Orders.find({ user_id })};
     let array=[];
     orders.map(it=>array.push(it.createdAt));
     array.sort(function(a, b) {
