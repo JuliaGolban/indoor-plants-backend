@@ -12,6 +12,7 @@ const Catalog = require("./catalog");
 const DepartmentsNP = require("./departmentsNP");
 const CitiesNP = require("./citiesNP");
 const Care = require("./care");
+const Basket = require("./basket");
 const { Orders, orderValidationSchema } = require("./order");
 
 module.exports = {
@@ -31,4 +32,5 @@ module.exports = {
   Care,
   Orders,
   orderValidationSchema,
+  Basket,
 };

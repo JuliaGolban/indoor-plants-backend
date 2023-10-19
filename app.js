@@ -48,6 +48,7 @@ app.use("/api/departments", routerDepartments);
 app.use("/api/catalog", routerCatalog);
 app.use("/api/care", routerCare);
 app.use("/api/order", routerOrder);
+app.use("/api/basket", routerBasket);
 
 app.use((req, res) => {
   console.log("!!!!! APP (req, res) !!!!!!");
