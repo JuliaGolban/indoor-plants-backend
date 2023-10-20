@@ -7,7 +7,7 @@ const updateItemInBasket = async (req, res, next) => {
     const newData = { ...req.body, _id};
     await Basket.deleteMany({ _id });
     resCreate = await Basket.create(newData);
-    return res.status(201).json(resCreate);
+    return res.status(201).json([resCreate]);
   } catch (err) {
     throw new ValidationError(err.message);
   }
