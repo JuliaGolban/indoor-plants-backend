@@ -20,20 +20,20 @@ const OrdersSchema = new mongoose.Schema(
       default: "not avtorization",
     },
     basket: {
-      type: Array,
+      type: Object,
       required: [true, "Set basket order"],
-      default: [],
+      default: {},
     },
     totalAmount: {
-      type: String,
+      type: Number,
       required: [true, "Set totalAmount"],
     },
     totalDiscount: {
-      type: String,
+      type: Number,
       required: [true, "Set totalDiscount"],
     },
     totalPayment: {
-      type: String,
+      type: Number,
       required: [true, "Set totalPayment"],
     },
     currency: {
@@ -50,6 +50,30 @@ const OrdersSchema = new mongoose.Schema(
       required: [true, "Set metodPayment"],
     },
     name: {
+      type: String,
+      required: [true, "Set userName"],
+    },
+    company: {
+      type: String,
+      required: [true, "Set userName"],
+    },
+    city: {
+      type: String,
+      required: [true, "Set userName"],
+    },
+    address1: {
+      type: String,
+      required: [true, "Set userName"],
+    },
+    address2: {
+      type: String,
+      required: [true, "Set userName"],
+    },
+    state: {
+      type: String,
+      required: [true, "Set userName"],
+    },
+    zipCode: {
       type: String,
       required: [true, "Set userName"],
     },

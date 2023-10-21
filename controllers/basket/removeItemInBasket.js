@@ -14,7 +14,6 @@ const removeItemInBasket = async (req, res, next) => {
         if (item.title !== size || item._id !== id) {
           newOptionData.push(item);
         }
-        console.log("newOptionData", newOptionData);
       });
 
       await Basket.findOneAndDelete({ _id });
