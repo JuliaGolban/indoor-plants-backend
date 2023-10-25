@@ -35,14 +35,6 @@ app.use("/uploads", express.static(`${__dirname}/images`));
 app.use("/uploads", express.static(`${__dirname}/images/avatars`));
 
 app.use("/api/auth", routerAuth);
-// app.use('/api/get_event', routerEvent);
-// app.use('/api/batch_event', routerUpdateEvent);
-// app.use('/api/owner', routerOwner);
-// app.use('/api/user', routerUser);
-// app.use('/api/services', routerServices);
-// app.use('/api/message', routerMessage);
-
-app.use("/api/developers", routerDevelopers);
 app.use("/api/cities", routerSities);
 app.use("/api/departments", routerDepartments);
 app.use("/api/catalog", routerCatalog);
